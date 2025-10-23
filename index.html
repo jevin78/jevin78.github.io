@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GLD 盘前30秒触发器面板</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+      --good: #34d399;
+      --bad: #f87171;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px;
+      background: radial-gradient(1200px 600px at 70% -20%, #111827 0%, #0b0f19 55%, #0b0f19 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    }
+    h1 { font-size: 22px; margin: 0 0 12px; letter-spacing: 0.2px; }
+    p { margin: 6px 0; color: var(--muted); }
+    .wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 16px;
+    }
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .grid-2 .card { padding: 10px; }
+    .badge {
+      display: inline-block; padding: 3px 8px; border-radius: 999px;
+      font-size: 12px; background: rgba(96,165,250,0.2); color: var(--accent); border: 1px solid rgba(96,165,250,0.4);
+      margin-left: 8px;
+    }
+    .rules li { margin: 4px 0; }
+    .rule {
+      padding: 8px 10px; border-radius: 10px; border: 1px dashed rgba(255,255,255,0.12);
+      margin: 8px 0; background: rgba(255,255,255,0.02);
+    }
+    .flex { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .muted { color: var(--muted); }
+    .tiny { font-size: 12px; }
+    .footer { text-align:center; margin-top: 14px; color: var(--muted); font-size: 12px; }
+    @media (max-width: 980px) {
+      .wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>GLD 盘前 30 秒触发器面板 <span class="badge">快速浏览</span></h1>
+  <p class="muted">4个关键输入：DXY、10Y、GC主力、GLD（昨日高低/盘前走势）。用于开盘前 30 秒判断“偏多 / 震荡 / 偏空”。</p>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="grid-2">
+        <!-- DXY -->
+        <div class="card">
+          <div class="flex">
+            <strong>美元指数 DXY</strong>
+            <span class="tiny muted">TVC:DXY</span>
+          </div>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {
+              "symbol": "TVC:DXY",
+              "width": "100%",
+              "height": "220",
+              "locale": "zh_CN",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "isTransparent": true,
+              "autosize": true,
+              "chartType": "area",
+              "lineWidth": 2
+            }
+            </script>
+          </div>
+        </div>
+
+        <!-- US10Y -->
+        <div class="card">
+          <div class="flex">
+            <strong>10年期美债收益率</strong>
+            <span class="tiny muted">TVC:US10Y</span>
+          </div>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {
+              "symbol": "TVC:US10Y",
+              "width": "100%",
+              "height": "220",
+              "locale": "zh_CN",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "isTransparent": true,
+              "autosize": true,
+              "chartType": "area",
+              "lineWidth": 2
+            }
+            </script>
+          </div>
+        </div>
+
+        <!-- Gold Futures -->
+        <div class="card">
+          <div class="flex">
+            <strong>COMEX 黄金主力</strong>
+            <span class="tiny muted">COMEX:GC1!</span>
+          </div>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {
+              "symbol": "COMEX:GC1!",
+              "width": "100%",
+              "height": "220",
+              "locale": "zh_CN",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "isTransparent": true,
+              "autosize": true,
+              "chartType": "area",
+              "lineWidth": 2
+            }
+            </script>
+          </div>
+        </div>
+
+        <!-- GLD -->
+        <div class="card">
+          <div class="flex">
+            <strong>GLD ETF</strong>
+            <span class="tiny muted">AMEX:GLD</span>
+          </div>
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+            {
+              "symbol": "AMEX:GLD",
+              "width": "100%",
+              "height": "220",
+              "locale": "zh_CN",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "isTransparent": true,
+              "autosize": true,
+              "chartType": "area",
+              "lineWidth": 2
+            }
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <strong>盘前判断规则（30秒读完）</strong>
+      <ul class="rules">
+        <li class="rule"><b>DXY</b>：<b class="bad">> 99.2</b> 偏空；<b class="good">< 98.8</b> 偏多。</li>
+        <li class="rule"><b>10Y</b>：<b class="bad">> 4.05%</b> 偏空；<b class="good">< 3.95%</b> 偏多。</li>
+        <li class="rule"><b>GC主力</b>：亚/欧盘若在昨高附近并走强 → GLD 易冲区间上沿；若弱于昨收且走低 → 偏中下沿。</li>
+        <li class="rule"><b>GLD</b>：盘前价相对昨高/昨低的位置：
+          <ul>
+            <li>靠近昨高并放量 → 偏多尝试；</li>
+            <li>位于昨日区间中部 → 震荡思路；</li>
+            <li>靠近昨低且美元走强 → 防守/偏空。</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="tiny muted">注：阈值可按你习惯微调；此面板仅提供信息展示，不构成投资建议。</p>
+      <div class="rule">
+        <div><b>执行建议（样例）</b></div>
+        <div class="tiny muted">若 IV 偏高：优先用价差/铁鹰控制 Vega；若方向明确：小仓位顺势单，区间破位再加。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 GLD Pre-Open Trigger Panel · TradingView 小组件加载实时行情（需联网）
+  </div>
+
+</body>
+</html>
